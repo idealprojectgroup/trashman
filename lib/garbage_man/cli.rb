@@ -34,7 +34,11 @@ module GarbageMan
       else
         say "#{count} file(s) deleted.", :green
       end
-    rescue ArgumentError => e
+    # This seems dirty.
+    # However, if the Fog::Storage provider throws any error,
+    # the user will be notified. Errors can be related to
+    # authentication, nonexistent bucket, etc.
+    rescue => e
       say e.message
     end
 
