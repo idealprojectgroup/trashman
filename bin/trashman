@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 $:.unshift(File.expand_path('../../lib', __FILE__))
-require 'garbage_man/cli'
+require 'trashman/cli'
 
 begin
-  GarbageMan::CLI.start
+  TrashMan::CLI.start
 rescue
   exit(1)
 end

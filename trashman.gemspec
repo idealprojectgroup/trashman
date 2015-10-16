@@ -1,15 +1,15 @@
 $LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
-require 'garbage_man/version_number'
+require 'trashman/version_number'
 
 Gem::Specification.new do |s|
-  s.name          = 'garbageman'
-  s.version       = GarbageMan.version
+  s.name          = 'trashman'
+  s.version       = TrashMan.version
   s.platform      = Gem::Platform::RUBY
   s.summary       = "Removes outdated periodic backup files from your cloud storage bucket"
   s.description   = s.summary
   s.authors       = ["Derek Hopper"]
   s.email         = 'hopper.derek@gmail.com'
-  s.homepage      = 'http://github.com/idealprojectgroup/garbageman'
+  s.homepage      = 'http://github.com/idealprojectgroup/trashman'
   s.license       = 'MIT'
 
   s.files         = `git ls-files`.split("\n")

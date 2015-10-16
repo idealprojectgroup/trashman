@@ -1,4 +1,4 @@
-module GarbageMan
+module TrashMan
   module VERSION
     MAJOR = 0
     MINOR = 1

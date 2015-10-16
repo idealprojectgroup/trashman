@@ -1,7 +1,7 @@
 require 'fog'
-require 'garbage_man'
+require 'trashman'
 
-module GarbageMan
+module TrashMan
   class Manager
     def initialize(provider, options = {})
       @options = options

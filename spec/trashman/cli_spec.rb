@@ -1,10 +1,10 @@
-require 'garbage_man/cli'
+require 'trashman/cli'
 
-describe GarbageMan::CLI do
+describe TrashMan::CLI do
   describe ".prune" do
     it "provides help" do
       expect {
-        GarbageMan::CLI.start(["help"])
+        TrashMan::CLI.start(["help"])
       }.to output(/prune/).to_stdout
     end
   end

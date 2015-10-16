@@ -1,8 +1,8 @@
 require 'thor'
-require 'garbage_man'
-require 'garbage_man/manager'
+require 'trashman'
+require 'trashman/manager'
 
-module GarbageMan
+module TrashMan
   class CLI < ::Thor
 
     desc "prune", "Prunes old backups."
@@ -24,7 +24,7 @@ module GarbageMan
         say "This is a dry-run. No files will be deleted."
       end
 
-      manager = GarbageMan::Manager.new(options.provider, options)
+      manager = TrashMan::Manager.new(options.provider, options)
       count = manager.cleanup! do |file|
         say " -- deleting #{file.key}", :yellow
       end

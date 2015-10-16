@@ -1,4 +1,4 @@
-# GarbageMan
+# TrashMan
 
 Removes outdated periodic backup files from your cloud storage bucket.
 
@@ -7,7 +7,7 @@ Removes outdated periodic backup files from your cloud storage bucket.
 Into Gemfile from rubygems.org:
 
 ```
-gem install garbageman
+gem install trashman
 ```
 
 ## Note
@@ -18,23 +18,23 @@ This gem assumes your filenames include a date and time e.g. backup.2015-07-07T1
 backup.$(date +'\%Y-\%m-\%dT\%H-\%M-\%S').tar.gz
 ```
 
-Please use the `--dry-run` option to test your configuration before using garbageman.
+Please use the `--dry-run` option to test your configuration before using trashman.
 
 ## Usage
 
-garbageman is best used as a cronjob. It assumes you have a cloud storage bucket where you store periodic backups with conventional filenames including date and time.
+trashman is best used as a cronjob. It assumes you have a cloud storage bucket where you store periodic backups with conventional filenames including date and time.
 
 To destroy outdated backups:
 
 ```
-garbageman prune --provider <FOG PROVIDER> --keep <NUMBER OF FILES TO KEEP> --container <CONTAINER/BUCKET> --credentials username:<USERNAME> password:<PASSWORD>
+trashman prune --provider <FOG PROVIDER> --keep <NUMBER OF FILES TO KEEP> --container <CONTAINER/BUCKET> --credentials username:<USERNAME> password:<PASSWORD>
 
-garbageman prune --provider rackspace --keep 100 --container "Test Container" --credentials rackspace_api_key:abc123 rackspace_username:example rackspace_region:ord
+trashman prune --provider rackspace --keep 100 --container "Test Container" --credentials rackspace_api_key:abc123 rackspace_username:example rackspace_region:ord
 
-garbageman help prune
+trashman help prune
 
 Usage:
-  garbageman prune --credentials=key:value -P, --provider=PROVIDER -c, --container=CONTAINER
+  trashman prune --credentials=key:value -P, --provider=PROVIDER -c, --container=CONTAINER
 
 Options:
   -P, --provider=PROVIDER          # A valid fog provider e.g. rackspace, aws, etc.
@@ -62,4 +62,4 @@ Many thanks to:
 
 ## License
 
-Please refer to [LICENSE.md](https://github.com/idealprojectgroup/garbageman/blob/master/LICENSE).
+Please refer to [LICENSE.md](https://github.com/idealprojectgroup/trashman/blob/master/LICENSE).

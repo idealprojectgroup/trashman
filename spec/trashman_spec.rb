@@ -1,7 +1,7 @@
-describe GarbageMan do
+describe TrashMan do
   describe ".version" do
     it "provides a version" do
-      expect(GarbageMan.version).to be
+      expect(TrashMan.version).to be
     end
   end
 end

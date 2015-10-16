@@ -1,5 +1,5 @@
 require 'singleton'
-require 'garbage_man/manager'
+require 'trashman/manager'
 
 class MockFogFile < Struct.new(:key)
   def destroy
@@ -33,7 +33,7 @@ class MockFogConnection
   end
 end
 
-describe GarbageMan::Manager do
+describe TrashMan::Manager do
   describe "#cleanup!" do
     before do
       # Provide a mock fog connection
@@ -43,21 +43,21 @@ describe GarbageMan::Manager do
     end
 
     it "yields to block" do
-      expect { |b| GarbageMan::Manager.new("rackspace", { credentials: {}, keep: 4 }).cleanup!(&b) }.to yield_with_args(MockFogContainer.instance.files.first)
+      expect { |b| TrashMan::Manager.new("rackspace", { credentials: {}, keep: 4 }).cleanup!(&b) }.to yield_with_args(MockFogContainer.instance.files.first)
     end
 
     it "destroys correct number of files based on the keep setting" do
       expect(MockFogContainer.instance.files[0]).to receive(:destroy)
       expect(MockFogContainer.instance.files[1]).to receive(:destroy)
 
-      count = GarbageMan::Manager.new("rackspace", { credentials: {}, keep: 3 }).cleanup!
+      count = TrashMan::Manager.new("rackspace", { credentials: {}, keep: 3 }).cleanup!
       expect(count).to eq 2
     end
 
     it "skips destruction if dry_run is enabled" do
       expect_any_instance_of(MockFogFile).to_not receive(:destroy)
 
-      GarbageMan::Manager.new("rackspace", { credentials: {}, keep: 3, dry_run: true }).cleanup!
+      TrashMan::Manager.new("rackspace", { credentials: {}, keep: 3, dry_run: true }).cleanup!
     end
   end
 end
