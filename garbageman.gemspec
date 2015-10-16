@@ -5,7 +5,6 @@ Gem::Specification.new do |s|
   s.name          = 'garbageman'
   s.version       = GarbageMan.version
   s.platform      = Gem::Platform::RUBY
-  s.date          = '2015-10-15'
   s.summary       = "removes outdated periodic backup files from your cloud storage bucket"
   s.description   = s.summary
   s.authors       = ["Derek Hopper"]
@@ -23,4 +22,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency('thor', '~> 0.19.1')
   s.add_dependency('fog', '~> 1.34.0')
+
+  s.add_development_dependency('rspec', '~> 3.0')
+  s.add_development_dependency('rake')
 end
