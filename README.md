@@ -12,11 +12,17 @@ gem install garbageman
 
 ## Note
 
-This gem assumes your filenames include a date and time e.g. backup-file.2015-07-07T10-32-01.tgz.
+This gem assumes your filenames include a date and time e.g. backup.2015-07-07T10-32-01.tar.gz.
+
+```
+backup.$(date +'\%Y-\%m-\%dT\%H-\%M-\%S').tar.gz
+```
 
 Please use the `--dry-run` option to test your configuration before using garbageman.
 
 ## Usage
+
+garbageman is best used as a cronjob. It assumes you have a cloud storage bucket where you store periodic backups with conventional filenames including date and time.
 
 To destroy outdated backups:
 
@@ -38,6 +44,21 @@ Options:
       --credentials=key:value      # Credentials for your fog provider (depends on fog provider).
       [--dry-run], [--no-dry-run]  # As normal, but it does not destroy old backups.
 ```
+
+## Contributors
+
+Many thanks to:
+
+- [Bruno Sutic](https://github.com/bruno-)
+
+## How to contribute
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Write your tests and check everything passes
+5. Push to the branch (`git push origin my-new-feature`)
+6. Create new Pull Request (into the master branch)
 
 ## License
 
