@@ -1,6 +1,6 @@
-require 'garbage_man'
 require 'thor'
-require 'fog'
+require 'garbage_man'
+require 'garbage_man/manager'
 
 module GarbageMan
   class CLI < ::Thor
@@ -20,34 +20,19 @@ module GarbageMan
     method_option :dry_run, type: :boolean, default: false,
       desc: "As normal, but it does not destroy old backups."
     def prune
-      connection = Fog::Storage.new(
-        { provider: options.provider }.merge(options.credentials)
-      )
-
-      container = connection.directories.get(options.container)
-
-      files = container.files
-
-      files = files.sort_by { |f| f.key }
-
       if options.dry_run
         say "This is a dry-run. No files will be deleted."
       end
 
-      queued_files = files[0...(- options.keep)]
-
-      queued_files.each do |file|
+      manager = GarbageMan::Manager.new(options.provider, options)
+      count = manager.cleanup! do |file|
         say " -- deleting #{file.key}", :yellow
-
-        if !options.dry_run
-          file.destroy
-        end
       end
 
       if options.dry_run
         say "This was a dry-run. No files were deleted."
       else
-        say "#{queued_files.count} file(s) deleted.", :green
+        say "#{count} file(s) deleted.", :green
       end
     rescue ArgumentError => e
       say e.message
