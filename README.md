@@ -1,5 +1,8 @@
 # TrashMan
 
+[![Build
+Status](https://travis-ci.org/idealprojectgroup/trashman.svg?branch=master)](https://travis-ci.org/idealprojectgroup/trashman)
+
 Removes outdated periodic backup files from your cloud storage bucket.
 
 ## Install
