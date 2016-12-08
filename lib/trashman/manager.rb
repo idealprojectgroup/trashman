@@ -38,7 +38,13 @@ module TrashMan
     end
 
     def files
-      @files ||= container.files.sort_by { |file| file.key }
+      @files ||= begin
+        if options[:pattern]
+          container.files.select { |file| file.key =~ Regexp.new(options[:pattern]) }
+        else
+          container.files
+        end.sort_by { |file| file.key }
+      end
     end
 
     def queued_files

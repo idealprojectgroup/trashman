@@ -59,5 +59,14 @@ describe TrashMan::Manager do
 
       TrashMan::Manager.new("rackspace", { credentials: {}, keep: 3, dry_run: true }).cleanup!
     end
+
+    it "ignores files which don't match the pattern" do
+      backup = MockFogFile.new("anotherbackup.2014-12-31T10-00-01.tar.gz")
+      MockFogContainer.instance.files.unshift(backup)
+      expect(backup).to_not receive(:destroy)
+
+      TrashMan::Manager.new("rackspace", { credentials: {}, keep: 3, pattern: "\Abackup.*tgz\z" }).cleanup!
+      MockFogContainer.instance.files.shift
+    end
   end
 end
