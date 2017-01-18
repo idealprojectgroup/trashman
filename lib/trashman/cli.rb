@@ -19,6 +19,8 @@ module TrashMan
       desc: "Credentials for your fog provider (depends on fog provider)."
     method_option :dry_run, type: :boolean, default: false,
       desc: "As normal, but it does not destroy old backups."
+    method_option :pattern, type: :string,
+      desc: "A regular expression to only consider matching filenames for pruning."
     def prune
       if options.dry_run
         say "This is a dry-run. No files will be deleted."
