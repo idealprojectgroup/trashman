@@ -46,6 +46,8 @@ Options:
                                    # Default: 100
       --credentials=key:value      # Credentials for your fog provider (depends on fog provider).
       [--dry-run], [--no-dry-run]  # As normal, but it does not destroy old backups.
+      [--pattern=PATTERN]          # A regular expression to only consider
+matching filenames for pruning.
 ```
 
 ## Contributors
